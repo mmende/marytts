@@ -17,7 +17,7 @@ mary.voices(function(voices){
 });
 
 // Generate an audio
-mary.process('Hello World', function(audio){
+mary.process('Hello World', {base64: true}, function(audio){
     console.log('The base64 audio', audio);
 });
 
@@ -40,6 +40,7 @@ outputType  | The data type to be generated as output.
 locale      | The locale of the input text.
 voice       | The voice to use for generating output.
 audio       | If outputType = audio the format in which to send the synthesized audio.
+base64      | If the returned audio should be returned as base64 string or buffer
 
 ## Methods
 

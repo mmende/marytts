@@ -93,10 +93,14 @@ module.exports = function(host, port) {
 				//console.log(response);
 				if (response.statusCode == 200) {
 					if(data['OUTPUT_TYPE']==='AUDIO') {
-						var audioBuffer = new Buffer(body),
-							format = response.headers['content-type'];
-						var base54Audio = 'data:' + format + ';base64,' + audioBuffer.toString('base64');
-						callback(base54Audio);
+						var audioBuffer = new Buffer(body);
+						if(('base64' in options) && options.base64 === true) {
+							var format = response.headers['content-type'];
+							var base54Audio = 'data:' + format + ';base64,' + audioBuffer.toString('base64');
+							callback(base54Audio);
+						} else {
+							callback(audioBuffer);
+						}
 					} else {
 						callback(body);
 						//console.log(body);

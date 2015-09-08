@@ -1,6 +1,6 @@
 var mary = require('./../')('localhost', 59125);
 
-mary.process('Hello World', function(audio){
+mary.process('Hello World', {base64: true}, function(audio){
 	console.log('Audio', audio.substr(0, 50) + '...');
 });
 
