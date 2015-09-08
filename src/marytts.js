@@ -209,6 +209,27 @@ module.exports = function(host, port) {
 	}
 
 	/**
+	 * Requests all available voices
+	 *
+	 * @param  {Function} callback A callback function
+	 */
+	function _locales(callback) {
+		request(_url + 'locales',
+			function(error, response, body) {
+				var locales = [];
+				if(error) {
+					console.error(error);
+					callback([]);
+				}
+				var rawLocales = body.split('\n');
+				for(var i = 0; i < rawLocales.length; ++i)
+					if(rawLocales[i].length > 0) locales.push(rawLocales[i]);
+				callback(locales);
+			}
+		);
+	}
+
+	/**
 	 * The public methods.
 	 */
 	return {
@@ -225,7 +246,7 @@ module.exports = function(host, port) {
 		/**
 		 * Gets the phonetic description, part of speech and transcription method for an array of words
 		 *
-		 * @param  {Array}   words    The words to transcribe
+		 * @param  {Array}    words    The words to transcribe
 		 * @param  {string}   locale   The locale to use
 		 * @param  {string}   voice    The voice to use
 		 * @param  {Function} callback A callback function
@@ -240,6 +261,56 @@ module.exports = function(host, port) {
 		 */
 		voices: function(callback) {
 			_voices(callback);
+		},
+		/**
+		 * Gets all available locales
+		 *
+		 * @param  {Function} callback A callback function
+		 */
+		locales: function(callback) {
+			_locales(callback);
+		},
+		/**
+		 * Gets all available input types
+		 *
+		 * @param  {Function} callback A callback function
+		 *
+		 * @return {Array}           The input types
+		 */
+		inputTypes: function(callback) {
+			var types = [];
+			for(var key in InputTypes)
+				types.push(key);
+			if(typeof(callback)==='function') callback(types);
+			return types;
+		},
+		/**
+		 * Gets all available output types
+		 *
+		 * @param  {Function} callback A callback function
+		 *
+		 * @return {Array}           The output types
+		 */
+		outputTypes: function(callback) {
+			var types = [];
+			for(var key in OutputTypes)
+				types.push(key);
+			if(typeof(callback)==='function') callback(types);
+			return types;
+		},
+		/**
+		 * Gets all available audio formats
+		 *
+		 * @param  {Function} callback A callback function
+		 *
+		 * @return {Array}            The audio formats
+		 */
+		audioFormats: function(callback) {
+			var formats = [];
+			for(var key in AudioFormats)
+				formats.push(key);
+			if(typeof(callback)==='function') callback(formats);
+			return formats;
 		}
 	};
 };

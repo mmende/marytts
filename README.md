@@ -46,6 +46,10 @@ base64      | If the returned audio should be returned as base64 string or buffe
 
 The following Methods are available:
 
-* `process(text, [options], callback)` - Processes the text and assigns the result to the callback.
-* `voices(callback)` - Assigns all installed voices to the callback.
-* `phonemes(words, locale, voice, callback)` - Assigns the phonetic transcription, the method for transcription and part of speech to the callback.
+* `process(text, [options], callback)` - Processes the text and assigns the result to the callback
+* `phonemes(words, locale, voice, callback)` - Assigns the phonetic transcription, the method for transcription and part of speech to the callback
+* `voices(callback)` - Assigns all installed voices (with their locale, gender and type) to the callback
+* `locales(callback)` - Assigns all installed locales to the callback
+* `inputTypes(callback):Array` - Assigns all available input types to callback and returns them
+* `outputTypes(callback):Array` - Assigns all available output types to callback and returns them
+* `audioFormats(callback):Array` - Assigns all available audio formats to callback and returns them
