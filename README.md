@@ -9,7 +9,7 @@ The module requires a MaryTTS server running. The only thing to do therefore is 
 ## Example
 
 ```javascript
-var mary = require('node-marytts')('localhost', 59125);
+var mary = require('marytts')('localhost', 59125);
 
 // Which voices are installed
 mary.voices(function(voices){

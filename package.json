@@ -1,5 +1,5 @@
 {
-  "name": "node-marytts",
+  "name": "marytts",
   "version": "1.0.0",
   "description": "MaryTTS for Node.js",
   "main": "src/marytts.js",
@@ -17,6 +17,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mmende/node-marytts"
+    "url": "https://github.com/mmende/marytts"
   }
 }
